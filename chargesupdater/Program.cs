@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
-string charges = @"C:\VSCode\c\crewReborn\resources\[qb]\[emergencyservices]\core_mdw\newcharges.csv";
-string config = @"C:\VSCode\c\crewReborn\resources\[qb]\[emergencyservices]\core_mdw\config.lua";
+
+Console.WriteLine("To start, remove all charges from config.lua. It should start at line 40. Then replace the newcharges.csv. IT MUST MATCH THAT FILE NAME EXACTLY ELSE IT WILL NOT WORK. Hit any key when that's done");
+Console.ReadKey();
+string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+
+string charges = strWorkPath + @"\newcharges.csv";
+string config = strWorkPath + @"\config.lua";
 var lines = File.ReadAllLines(config).ToList();
 //lines.Insert(40, "@  ['TestCharge'] = {label = 'whatever', jail = 48, fine = 19, color = '#ff2e2e'},");
 // lines.Insert(skip, $"  ['{id}'] = {{label = {label}, jail = {time}, fine = {fine}, color = '#ff2e2e'}},");
